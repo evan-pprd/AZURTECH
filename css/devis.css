@@ -129,3 +129,18 @@ footer .logo .name{color:#fff}footer a:hover{color:#fff}
 
 footer .logo .mark{background:#fff;border-radius:8px;padding:4px}
 .viewer-bar.solo{border:1px solid var(--sky-line);border-radius:12px;margin-top:4px}
+
+/* ===== Correctifs mobile ===== */
+@media(max-width:640px){
+  input[type=text],input[type=email],input[type=tel],select,textarea{font-size:16px}
+  .phead{padding:44px 0 92px}
+  .split{margin-top:-52px;gap:22px}
+  .panel{padding:22px 18px}
+  .phead h1{font-size:clamp(1.7rem,7vw,2.2rem)}
+  .phead p{font-size:.98rem}
+  .dates{scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .date-pill{scroll-snap-align:start}
+  .viewer-bar,.viewer-bar.solo{padding:12px}
+  .vbtns{width:100%}
+  .vbtn{flex:1 1 auto;justify-content:center}
+}
