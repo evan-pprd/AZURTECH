@@ -8,9 +8,9 @@ window.AZ_DEST_EMAIL = 'contact@azurtech-informatique.fr';
    et une pièce jointe utilisant {{content}} (base64) + {{filename}}.
    Tant que les clés ne sont pas renseignées, un envoi manuel pré-rempli prend le relais. */
 window.AZ_EMAILJS = {
-  publicKey:   'REMPLACER_PUBLIC_KEY',
-  serviceId:   'REMPLACER_SERVICE_ID',
-  templateDevis: 'REMPLACER_TEMPLATE_DEVIS',
-  templateRdv:   'REMPLACER_TEMPLATE_RDV'
+  publicKey:   'uTCMI7zjo80TOIbCy',
+  serviceId:   'service_0yvovn5',
+  templateDevis: 'template_95whq28',
+  templateRdv:   'template_zbalmvs'
 };
 window.AZ_EMAILJS_READY = !window.AZ_EMAILJS.publicKey.startsWith('REMPLACER');
