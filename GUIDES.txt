@@ -21,9 +21,12 @@ azurtech/
 │   ├── devis.css
 │   └── reservation.css
 ├── js/
+│   ├── config.js       Config EmailJS partagée (À REMPLIR)
+│   ├── azpdf.js        Générateur PDF de marque (devis + rdv)
 │   ├── index.js
 │   ├── devis.js
-│   └── reservation.js
+│   ├── reservation.js
+│   └── vendor/         jsPDF + EmailJS (auto-hébergés)
 └── GUIDES.txt          Ce fichier
 
 RÈGLE : garde tout dans le même dossier. Les liens sont relatifs
@@ -81,29 +84,55 @@ Affichés dans index.html (section tarifs) ET utilisés dans devis.js
 
 
 ──────────────────────────────────────────────────────────────────
-5. ACTIVER L'ENVOI D'EMAIL (devis.html)
+5. ACTIVER L'ENVOI D'EMAIL (devis + rendez-vous)
 ──────────────────────────────────────────────────────────────────
 
-Le devis génère un PDF et peut s'envoyer par email via EmailJS.
+Devis ET rendez-vous génèrent un PDF de marque et s'envoient
+automatiquement à contact@azurtech-informatique.fr via EmailJS.
 Tant que non configuré → fallback mailto (ouvre le client mail).
+
+⚠ La config est désormais CENTRALISÉE dans js/config.js
+   (plus rien à toucher dans devis.js / reservation.js).
 
 Étapes :
   1. Crée un compte gratuit sur emailjs.com
-  2. Ajoute un service email (Gmail, Zoho…) → note le Service ID
-  3. Crée un template → note le Template ID
+  2. Ajoute un service email (Zoho, Gmail…) → note le Service ID
+  3. Crée DEUX templates :
+       • un pour les DEVIS       → Template DEVIS
+       • un pour les RENDEZ-VOUS → Template RDV
   4. Récupère ta Public Key (Account → API Keys)
-  5. Ouvre js/devis.js, ligne 5, remplace :
+  5. Ouvre js/config.js et remplace :
 
-     const EMAILJS={
-       publicKey:'REMPLACER_PUBLIC_KEY',
-       serviceId:'REMPLACER_SERVICE_ID',
-       templateId:'REMPLACER_TEMPLATE_ID'
+     window.AZ_EMAILJS = {
+       publicKey:     'REMPLACER_PUBLIC_KEY',
+       serviceId:     'REMPLACER_SERVICE_ID',
+       templateDevis: 'REMPLACER_TEMPLATE_DEVIS',
+       templateRdv:   'REMPLACER_TEMPLATE_RDV'
      };
 
-  Mets tes 3 vraies clés. L'envoi automatique s'active seul.
+  L'envoi automatique s'active seul.
 
-Variables envoyées au template : reference, date, mode, service,
-materiel, nom, email, telephone, ville, message.
+DISTINCTION DEVIS / RDV DANS LES MAILS :
+  Dans CHAQUE template EmailJS, mets comme "Subject" :  {{subject}}
+    → Devis : "[DEVIS] AZ-123456 — Configuration & Windows 11"
+    → RDV   : "[RDV] AZ-654321 — sam. 12 juil 10:30"
+  Ajoute une pièce jointe (Attachments) :
+    Content = {{content}} (base64)   Filename = {{filename}}
+  → le PDF (Devis_AZURTECH_….pdf ou RDV_AZURTECH_….pdf) est joint.
+
+Variables — DEVIS : subject, type, reference, date, prestation,
+  materiel, intervention, ville, urgence, description,
+  client_nom, client_tel, client_email, content, filename.
+Variables — RDV : subject, type, reference, date, prestation,
+  materiel, intervention, ville, adresse, rdv_date, rdv_heure,
+  precisions, client_nom, client_tel, client_email, content, filename.
+
+CÔTÉ CLIENT :
+  • Devis  → le PDF s'ouvre dans un NOUVEL ONGLET (pas d'aperçu réduit)
+             + boutons rouvrir / télécharger.
+  • RDV    → récapitulatif à l'écran + PDF téléchargeable ;
+             seuls les créneaux dans tes horaires d'ouverture sont
+             proposés (menu déroulant, hors conflit ±1h).
 
 
 ──────────────────────────────────────────────────────────────────

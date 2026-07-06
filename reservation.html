@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Sécurité : politique de sécurité du contenu (CSP) + referrer -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; upgrade-insecure-requests; img-src 'self' data:; connect-src 'self'; frame-src 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; upgrade-insecure-requests; img-src 'self' data: blob:; connect-src 'self' https://api.emailjs.com; frame-src 'self' blob:; form-action 'self' mailto:">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Prendre RDV — AZURTECH</title>
 <link rel="icon" href="assets/favicon.png" type="image/png">
@@ -12,6 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="js/vendor/jspdf.umd.min.js"></script>
+<script src="js/vendor/email.min.js"></script>
   <link rel="stylesheet" href="css/reservation.css">
 </head>
 <body>
@@ -90,9 +92,9 @@
           <span><i class="lg-r"></i> Complet</span>
         </div>
 
-        <span class="step-tag">05 — Indiquez l'horaire souhaité</span>
-        <div class="time-wrap"><input type="time" id="heure" step="900" disabled></div>
-        <p class="slot-note" id="slotNote">Sélectionnez d'abord une date ci-dessus.</p>
+        <span class="step-tag">05 — Choisissez un horaire</span>
+        <div class="time-wrap"><select id="heure" disabled><option value="" disabled selected>Sélectionnez d'abord une date</option></select></div>
+        <p class="slot-note" id="slotNote">Sélectionnez d'abord une date ci-dessus. Seuls les créneaux dans mes horaires d'ouverture sont proposés.</p>
         <div class="conflict-note" id="conflictNote"></div>
 
         <span class="step-tag">06 — Vos coordonnées</span>
@@ -118,8 +120,11 @@
       <div class="success" id="success">
         <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div>
         <h2>Rendez-vous confirmé !</h2>
-        <p>C'est noté. Vous recevez un e-mail et un SMS de rappel. Je serai au rendez-vous.</p>
+        <p>C'est noté, je reçois votre demande directement. Je vous recontacte rapidement pour valider le créneau.</p>
         <div class="recap" id="recap"></div>
+        <div class="mail-status" id="mailStatus"></div>
+        <div class="dlbar"><a class="vbtn pri" id="rdvDl" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>Télécharger le récapitulatif (PDF)</a></div>
+        <br>
         <a class="btn btn-outline" href="index.html">Retour à l'accueil</a>
       </div>
     </div>
@@ -158,6 +163,8 @@
   </div>
 </footer>
 
+  <script src="js/config.js"></script>
+  <script src="js/azpdf.js"></script>
   <script src="js/reservation.js"></script>
 </body>
 </html>

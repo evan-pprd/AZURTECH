@@ -142,3 +142,14 @@ footer .logo .name{color:#fff}footer a:hover{color:#fff}
 :focus-visible{outline:3px solid var(--azur);outline-offset:2px;border-radius:6px}
 
 footer .logo .mark{background:#fff;border-radius:8px;padding:4px}
+.mail-status{font-size:.87rem;margin:0 auto 16px;max-width:56ch;padding:11px 15px;border-radius:10px;text-align:left}
+.mail-status.ok{background:rgba(30,158,106,.1);color:#12734b;border:1px solid rgba(30,158,106,.35)}
+.mail-status.warn{background:rgba(255,107,74,.09);color:#b23c1e;border:1px solid rgba(255,107,74,.35)}
+.mail-status a{color:var(--azur);font-weight:700}
+.dlbar{display:flex;justify-content:center;margin-bottom:6px}
+.vbtn{border:1.5px solid var(--line-2);background:#fff;border-radius:9px;padding:9px 15px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;color:var(--ink);display:inline-flex;align-items:center;gap:7px;transition:.16s}
+.vbtn:hover{border-color:var(--azur);color:var(--azur)}
+.vbtn.pri{background:linear-gradient(135deg,var(--azur-light),var(--azur));color:#fff;border-color:transparent}
+.vbtn.pri:hover{color:#fff;box-shadow:0 8px 18px -8px rgba(21,88,158,.8)}
+.vbtn svg{width:15px;height:15px}
+.time-wrap{max-width:260px}

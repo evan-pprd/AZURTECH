@@ -123,18 +123,15 @@
       <div class="success" id="success">
         <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div>
         <h2>Demande envoyée !</h2>
-        <p>Voici votre devis, <b>gratuit et sans engagement</b>. Vous en gardez une copie ci-dessous.</p>
+        <p>Votre devis, <b>gratuit et sans engagement</b>, s'est ouvert dans un nouvel onglet. Vous pouvez le rouvrir ou le télécharger ci-dessous.</p>
         <div class="ref" id="refNo">Réf. AZ-000000</div>
         <div class="mail-status" id="mailStatus"></div>
-        <div class="viewer">
-          <div class="viewer-bar">
-            <span class="vl">Aperçu du devis · <span id="doneRef" class="mono"></span></span>
-            <div class="vbtns">
-              <a class="vbtn" id="btnOpen" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg>Nouvel onglet</a>
-              <a class="vbtn pri" id="btnDl" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>Télécharger</a>
-            </div>
+        <div class="viewer-bar solo">
+          <span class="vl">Votre devis · <span id="doneRef" class="mono"></span></span>
+          <div class="vbtns">
+            <a class="vbtn" id="btnOpen" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg>Rouvrir dans un onglet</a>
+            <a class="vbtn pri" id="btnDl" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>Télécharger</a>
           </div>
-          <iframe id="pdfFrame" title="Aperçu du devis PDF"></iframe>
         </div>
         <br>
         <a class="btn btn-outline" href="index.html">Retour à l'accueil</a>
@@ -175,6 +172,8 @@
   </div>
 </footer>
 
+  <script src="js/config.js"></script>
+  <script src="js/azpdf.js"></script>
   <script src="js/devis.js"></script>
 </body>
 </html>

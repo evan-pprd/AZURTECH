@@ -128,3 +128,4 @@ footer .logo .name{color:#fff}footer a:hover{color:#fff}
 .mail-status a{color:var(--azur);font-weight:700}
 
 footer .logo .mark{background:#fff;border-radius:8px;padding:4px}
+.viewer-bar.solo{border:1px solid var(--sky-line);border-radius:12px;margin-top:4px}
